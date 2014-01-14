@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 3322500ef2e7df04caf34acd3168b907
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - chip: {instanceID: 0}
+  - chipSpawn: {instanceID: 0}
+  - chipSpawnPoint: {instanceID: 0}
+  - hatsi: {instanceID: 0}
+  - weedScore: {instanceID: 0}
+  - cash: {instanceID: 0}
+  - kauppa: {instanceID: 0}
+  - highlightcube: {fileID: 100000, guid: 06891a2e2c0d4bb4d8fd1612d8a0a44f, type: 2}
+  - kuumotus: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
