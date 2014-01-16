@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\kauppaScript.cs">
+    <Files>
+      <File FileName="Assets\Scripts\kauppaScript.cs" Line="50" Column="29" />
+      <File FileName="Assets\Scripts\kauppaSoluScript.cs" Line="19" Column="1" />
+      <File FileName="Assets\Scripts\clickScript.cs" Line="45" Column="29" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
