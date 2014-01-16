@@ -7,6 +7,8 @@ public class luuriScript : MonoBehaviour {
 	public float stillRingsFor = 2f;
 	public float ringing = 2f;
 	public int saleAmount = 1;
+	public GameObject soittaja;
+	public GameObject soittaa;
 	
 	public cashScript cash;
 	public weedScript weed;
@@ -18,6 +20,10 @@ public class luuriScript : MonoBehaviour {
 		weed = GameObject.Find("GuiWeed").GetComponent("weedScript") as weedScript;
 		sijainti = transform.position;
 		StartCoroutine("call");
+		soittaja.renderer.enabled = false;
+		if (soittaa) {
+			soittaa.renderer.enabled = false;
+		}
 	}
 	
 	IEnumerator call () {
@@ -33,6 +39,9 @@ public class luuriScript : MonoBehaviour {
 	
 	public void puhelu () {
 		stillRingsFor = Random.Range(10f, 30f);
+		soittaja.renderer.enabled = true;
+		if (soittaa)
+			soittaa.renderer.enabled = true;
 		ringing = 1f;
 	}
 	
@@ -56,8 +65,12 @@ public class luuriScript : MonoBehaviour {
 			}
 			
 			if (ringing > 0f ){
-				transform.position = sijainti + new Vector3(Random.Range(-0.1f,0.1f),Random.Range(-0.1f,0.1f),sijainti.z);
+				transform.position = sijainti + new Vector3(Random.Range(-0.1f,0.1f),Random.Range(-0.1f,0.1f),0);
 			}
+		}else {
+			soittaja.renderer.enabled = false;
+			if (soittaa)
+				soittaa.renderer.enabled = false;
 		}
 	}
 }
