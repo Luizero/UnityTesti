@@ -1,0 +1,42 @@
+Clickeriin:
+- Klikkaa soivaa luuria
+	-> randompätkät lähtee soimaan
+	-> vikan pätkän kohdalla hinta = *1.5 
+(hinta lukee luurien kohdalla tekstinä ja muuttaa väriä ja kokoa vikan samplen ajaksi)
+
+- Tavaran laatu ja määrä
+Alussa:
+
+Lamppu -> Määrä
+	1g/w *0.2 alussa -> *2 lopussa
+	50 / kasvi -> 20g - 100g
+
+8e / g kenkäheinää -> 20e / g laadua 
+
+Lamput
+125w esl 	=  	25  ->  125  ->  250
+250w esl 	=  	50  ->  250  ->  500
+400w natikka 	= 	80  ->  400  ->  800
+600w natikka 	=  	120 ->  600  ->  1200
+1000w mome 	=	200 ->  1000 ->  2000
+
+
+Upgradet muuttaa kerrointa:
+
+Kookos 			-> +0.1
+Ravinteet		-> +0.1 -> 0.2 (Laatu +1 +2)
+Mikroravinteet		-> +0.1 -> 0.2 (laatu +1 +2)
+Bakteerit		-> +0.1 (laatu +1)
+PH-litkut		-> +0.1
+PH-EC-mittari		-> +0.1
+Drip-feed		-> +0.1
+Tuuletus		-> +0.1
+Flower boost 		(Laatu +1 +2)
+Lajike (restarttaa)	-> 0.1 -> 0.4 (laatu +1 +2 +3)
+Hydro (automatisoitu)	-> 0 -> 0.1 (nft)
+	Bubbler		-> +0.1
+	Automatisointiupgradet	
+	-> sato 90 sekunnin välein (*0.9 *0.8 *0.7 *0.6 *0.5 *0.4 *0.3)
+
+Ilmastointi		-> +0.1 -> 0.2
+Curing box 		(Laatu +1)
