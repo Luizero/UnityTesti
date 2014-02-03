@@ -5,10 +5,8 @@ using System.Collections.Generic;
 public class kauppaScript : MonoBehaviour {
 	
 	public GameObject activeBlock;
-	//public GameObject test;
 	public bool kauppaEnabled = false;
 	public clickScript click;
-	//List<GameObject> solut;
 	
 	// Use this for initialization
 	void Start () {
@@ -16,14 +14,15 @@ public class kauppaScript : MonoBehaviour {
 	}
 	
 	void OnMouseDown() {
+		
 		if( kauppaEnabled == false ) {
 			click.highlightcube.renderer.enabled = true;
 			kauppaEnabled = true;
-			this.guiText.text = "Kauppa: ON";
+			GetComponent<TextMesh>().text = "Kauppa: ON";
 			
-			foreach(GameObject test in GameObject.FindGameObjectsWithTag("test"))
+			foreach(GameObject kauppaSolu in GameObject.FindGameObjectsWithTag("kauppaSolu"))
 			{
-        		test.guiTexture.enabled = true;
+        		kauppaSolu.renderer.enabled = true;
 			}
 
 		}			
@@ -31,11 +30,11 @@ public class kauppaScript : MonoBehaviour {
 			kauppaEnabled = false;
 			click.highlightcube.renderer.enabled =false;
 			click.highlightcube.transform.position += new Vector3(0,0,1);
-			this.guiText.text = "Kauppa: OFF";
+			GetComponent<TextMesh>().text = "Kauppa: OFF";
 			
-			foreach(GameObject test in GameObject.FindGameObjectsWithTag("test"))
+			foreach(GameObject kauppaSolu in GameObject.FindGameObjectsWithTag("kauppaSolu"))
 			{
-			test.guiTexture.enabled = false;
+				kauppaSolu.renderer.enabled = false;
 			}
 		}		
 	}
@@ -43,11 +42,16 @@ public class kauppaScript : MonoBehaviour {
 	public void saveActiveBlock (GameObject block) {
 		activeBlock = block;
 	}
-	void OnMouseOver () {
-		this.guiText.fontSize = 17;
+	public GameObject getActiveBlock() {
+		return activeBlock;	
+	}
+	void OnMouseEnter () {
+		//this.guiText.fontSize = 17;
+		GetComponent<TextMesh>().characterSize += 0.02f;
 	}
 	void OnMouseExit () {
-		this.guiText.fontSize = 15;
+		//this.guiText.fontSize = 15;
+		GetComponent<TextMesh>().characterSize -= 0.02f;
 	}
 	// Update is called once per frame
 	void Update () {
