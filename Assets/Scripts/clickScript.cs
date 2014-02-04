@@ -45,18 +45,7 @@ public class clickScript : MonoBehaviour {
 			chip.transform.localScale *= 1.3f;
 			
 		}
-		/* Tää ois nyt niinku turha ku tein tästä spawnCoin funktion. Ja sitä kutsuillaan kauppaSoluScript.cs:ssa!
-		if (!chip && cash.cash >= 200) {
-			chip = Instantiate(chipSpawn, chipSpawnPoint.transform.position, Quaternion.identity) as GameObject;
-			chip.transform.RotateAround(Vector3.down, Mathf.PI*3f);
-			chip.transform.RotateAround(Vector3.right, Mathf.PI/2f);
-			chip.transform.RotateAround(Vector3.forward, Mathf.PI);
-			chipDefaultRotation = chip.transform.localRotation;
-			targetRotation = chip.transform.localRotation;
-			cash.addCash (-200);
-			size = chip.transform.localScale;
-			targetSize = size;
-		}*/
+
 		if(kauppa.kauppaEnabled == true) {	
 			highlightcube.transform.position = this.transform.position - new Vector3(0,0,+0.1f);
 			kauppa.saveActiveBlock(this.gameObject);	
