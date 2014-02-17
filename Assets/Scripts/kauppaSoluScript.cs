@@ -22,8 +22,8 @@ public class kauppaSoluScript : MonoBehaviour {
 	
 	void OnMouseDown () {
 		click = kauppa.activeBlock.GetComponent("clickScript") as clickScript;
-		if (!click.chip && click.cash.cash >= 200)
-		click.spawnCoin();
+		//if (!click.chip && click.cash.cash >= 200)
+		//click.spawnCoin();
 	}
 	void OnMouseEnter () {
 		this.transform.localScale += new Vector3(0.1f,0.1f,0f);
