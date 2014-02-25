@@ -3,35 +3,40 @@ using System.Collections;
 
 public class clickScript : MonoBehaviour {
 	
-	
-	public GameObject chipSpawn;
 	public float angle = 0f;
-	public float days = 90f;
+	public float resetting = 0f;
+	public float days = 90f;	
+	//MIKACHU!: Tää tarttee muuttaa? Koska hydro automatisoi ja tää kerroin ilmeisesti lisää kasvamisnopeutta?
 	public float hydroConstant = 0f;
+	public float sinceLastHydroTick;
+	public float kerroin = 0.2f;
+	public int hydroLevel = 0;
+	public int valoTeho = 12;
+	public GameObject chipSpawn;
 	public GameObject chipSpawnPoint;
 	public GameObject light;
+	public GameObject chip;
+	public GameObject growLight;
+	public GameObject highlightcube;
 	public Quaternion chipDefaultRotation;
 	public Quaternion targetRotation;
 	public Quaternion previousRotation;
-	public weedScript weedScore;
-	public cashScript cash;
-	public kauppaScript kauppa;
-	public GameObject highlightcube;
-	public float resetting = 0f;
+	public cashScript cash;	
+	public kauppaScript kauppa;	
 	public kuumotusScript kuumotus;
+	public weedScript weedScore;
 	public Vector3 size;
 	public Vector3 targetSize;
-	public float sinceLastHydroTick;
+	
 	//Instantiot
 	public ParticleSystem hatsi;
-	public GameObject chip;
-	public GameObject growLight;
+	
 	
 	// Use this for initialization
 	void Start () {
 		cash = GameObject.Find("GuiCash").GetComponent("cashScript") as cashScript;
 		kuumotus = GameObject.Find("kuumotusmittari").GetComponent("kuumotusScript") as kuumotusScript;
-		kauppa = GameObject.Find("kauppa").GetComponent("kauppaScript") as kauppaScript;
+		//kauppa = GameObject.Find("kauppa").GetComponent("kauppaScript") as kauppaScript;
 		light = GameObject.Find("growLight");
 		
 		if (chip)
@@ -45,14 +50,14 @@ public class clickScript : MonoBehaviour {
 	}
 	
 	void OnMouseDown() {
-		if (chip  && resetting <= 0f && kauppa.kauppaEnabled == false) {
+		if (chip  && resetting <= 0f /*&& kauppa.kauppaEnabled == false*/) {
 			tickCoin();			
 		}
-
+		/* WANHAAAA
 		if(kauppa.kauppaEnabled == true) {	
 			highlightcube.transform.position = this.transform.position - new Vector3(0,0,+0.1f);
 			kauppa.saveActiveBlock(this.gameObject);	
-		}
+		}*/
 
 	}
 	
@@ -82,14 +87,15 @@ public class clickScript : MonoBehaviour {
 			angle = 0f;
 			//chip.transform.localRotation = chipDefaultRotation;
 			Instantiate(hatsi, chip.transform.position + new Vector3(0,0,-1), Quaternion.Euler(-90,0,0));
-			weedScore.addWeed(50);			
+			weedScore.addWeed(Mathf.RoundToInt(valoTeho*kerroin));			
 			targetRotation = chipDefaultRotation;
 			kuumotus.addKuumotus(5f);
 			resetting = 0.5f;
 			
 
 		}
-		if(sinceLastHydroTick >= 1f && chip  && resetting <= 0f) {
+		
+		if(hydroLevel > 0 && sinceLastHydroTick >= 1.1f - hydroLevel*0.1f && chip  && resetting <= 0f) {
 			tickCoin();
 			sinceLastHydroTick = 0;
 		}
@@ -104,11 +110,15 @@ public class clickScript : MonoBehaviour {
 		chipDefaultRotation = chip.transform.localRotation;
 		targetRotation = chip.transform.localRotation;
 		growLight = Instantiate(light, this.transform.position - new Vector3(0,0,3), Quaternion.identity) as GameObject;
+		growLight.transform.parent = this.transform;
 		cash.addCash (-hinta);
 		size = chip.transform.localScale;
 		targetSize = size;
 	}
-	
+	public void purchaseHydro(int hinta){
+		hydroLevel++;
+		cash.addCash(-hinta);
+	}
 	void tickCoin() {
 		chip.transform.RotateAround(Vector3.up, Mathf.PI/days);
 		angle += Mathf.PI/days;

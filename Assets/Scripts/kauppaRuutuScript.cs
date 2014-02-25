@@ -8,11 +8,13 @@ public class kauppaRuutuScript : MonoBehaviour {
 	public string nimi = "";
 	public GameObject tooltipText;
 	public int level;
-	public int hinta = 40;
+	public int hinta;
+	public cashScript cash;
 	
 	// Use this for initialization
 	void Start () {
 		tooltip = GameObject.Find("tooltip").GetComponent("tooltipScript") as tooltipScript;
+		cash = GameObject.Find("GuiCash").GetComponent("cashScript") as cashScript;
 		level = 1;
 	}
 	
@@ -40,18 +42,78 @@ public class kauppaRuutuScript : MonoBehaviour {
 	}
 	
 	void OnMouseDown () {
-		switch( this.gameObject.name )
-		{
-			case "kukkaRuutu":
-				click = GameObject.Find( level + "_block" ).GetComponent("clickScript") as clickScript;
-
-				if(click.cash.cash >= hinta) {
-					click.spawnCoin(hinta);
-					level++;
+		if(cash.cash >= hinta){	
+			switch( this.gameObject.name )
+			{
+				case "kukkaRuutu":
+					click = GameObject.Find( level + "_block" ).GetComponent("clickScript") as clickScript;
+	
+					if(click.cash.cash >= hinta) {
+						click.spawnCoin(hinta);
+						level++;
+						hinta = hinta * 2;
+						updatePrice();
+					}
+					break;
+				case "hydroRuutu":					
+					foreach(GameObject block in GameObject.FindGameObjectsWithTag("block"))
+					{
+	        			click = block.GetComponent("clickScript") as clickScript;
+						if(level < 8){
+							click.hydroLevel++;												
+						}					
+					}
+					cash.addCash(-hinta);
 					hinta = hinta * 2;
 					updatePrice();
-				}
-				break;
+					level++;
+					break;
+				case "valoRuutu":
+					foreach(GameObject block in GameObject.FindGameObjectsWithTag("block"))
+					{
+	        			click = block.GetComponent("clickScript") as clickScript;
+						switch(click.valoTeho)
+						{
+							case 12:
+								click.valoTeho = 36;
+								break;
+							case 36:
+								click.valoTeho = 50;
+								break;
+							case 125:
+								click.valoTeho = 250;
+								break;
+							case 250:
+								click.valoTeho = 400;
+								break;
+							case 400:
+								click.valoTeho = 600;
+								break;
+							case 600:
+								click.valoTeho = 1000;
+								break;
+						}
+						if(click.chip){
+							click.growLight.GetComponent<Light>().intensity += 0.1f;
+							click.growLight.GetComponent<Light>().spotAngle += 2;
+						}
+					}
+					cash.addCash(-hinta);
+					hinta = hinta * 2;
+					updatePrice();
+					break;
+				case "kilkeRuutu":
+					foreach(GameObject block in GameObject.FindGameObjectsWithTag("block"))
+					{
+	        			click = block.GetComponent("clickScript") as clickScript;
+						if(click.kerroin <= 2.0f)
+							click.kerroin += 0.1f; 				
+					}
+					cash.addCash(-hinta);
+					hinta = hinta * 2;
+					updatePrice();
+					break;
+			}
 		}
 	}
 	
